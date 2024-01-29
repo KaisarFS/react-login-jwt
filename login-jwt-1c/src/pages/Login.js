@@ -43,13 +43,19 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      console.log( "<=== masoooook" )
       const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      console.log(response, "<===")
       const { token } = response.data;
       login(token, username);
     } catch (error) {
       console.error(error);
       // setError('Login failed. Please check your credentials.');
-      setError(error.response.data.message);
+      if(error.code === 'ERR_NETWORK') {
+        setError('Internal server error, coba lagi nanti.');
+      } else {
+        setError(error.response.data.message);
+      }
     }
   };
 
@@ -68,7 +74,7 @@ const Login = () => {
           <label onClick={() => focusinp('pass')} htmlFor="Password">Password</label>
         </div>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red', margin: '0' }}>{error}</p>}
         
 
         <button className="login-btn" type="submit" onClick={handleLogin}>Login</button>
