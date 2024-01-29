@@ -1,3 +1,9 @@
+# Assesment FE - Kaisar
+***Username: user1***   
+***Password: pass1***
+
+***Username: user2***  
+***Password: pass2***
 
 ## 1. Running the server 
 
